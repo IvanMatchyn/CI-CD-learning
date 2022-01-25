@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   AppCenter.config.plist
+   ci_cd_learning
+
+   Created by imatchyn on 25.01.2022.
+   Copyright (c) 2022 ___ORGANIZATIONNAME___. All rights reserved.
+-->
+<plist version="1.0">
+  <dict>
+    <key>AppCenter</key>
+    <string>214dd4a0-30de-4006-9ab3-c759476fb712</string>
+  </dict>
+</plist>
