@@ -1,6 +1,5 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
+git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
-# You may use http://rbenv.org/ or https://rvm.io/ to install and use this version
-ruby '2.7.4'
+gem "cocoapods", "~> 1.11"
 
-gem 'cocoapods', '~> 1.11', '>= 1.11.2'
