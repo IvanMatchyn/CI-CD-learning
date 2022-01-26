@@ -33,15 +33,12 @@ const App: () => Node = () => {
 
   const throwError = async () => {
     const data = await Crashes.generateTestCrash();
-    console.log(27, 'zxc', 'data', data)
   }
 
   const checkIsCrashed = async () => {
     const isCrashed = await Crashes.hasCrashedInLastSession();
-    console.log(31, 'zxc', 'isCrashed', isCrashed)
     if (isCrashed) {
       const report = await Crashes.lastSessionCrashReport();
-      console.log(34, 'zxc', 'report', report)
     }
   }
 
