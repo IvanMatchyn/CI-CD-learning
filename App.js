@@ -17,10 +17,10 @@ import {
 import * as Analytics from 'appcenter-analytics';
 
 const App: () => Node = () => {
-  const [amount, setAmount] = useState('10000');
-  const [inflationRate, setInflationRate] = useState('10');
-  const [timeInYears, setTimeInYears] = useState('6');
-  const [riskFreeRate, setRiskFreeRate] = useState('10');
+  const [amount, setAmount] = useState();
+  const [inflationRate, setInflationRate] = useState();
+  const [timeInYears, setTimeInYears] = useState();
+  const [riskFreeRate, setRiskFreeRate] = useState();
   const [afterInflation, setAfterInflation] = useState();
   const [atRiskFree, setAtRiskFree] = useState();
   const [atRiskFreeAfterInflation, setAtRiskFreeAfterInflation] = useState();
@@ -50,11 +50,13 @@ const App: () => Node = () => {
     const afterInflationVal = calculateInflationImpact(amount, inflationRate / 100, timeInYears);
     const atRiskFreeVal = amount * Math.pow(1 + riskFreeRate / 100, timeInYears);
     const atRiskFreeAfterInflationVal = calculateInflationImpact(atRiskFreeVal, inflationRate / 100, timeInYears);
-    const differenceVal = Math.round(atRiskFreeAfterInflationVal - afterInflationVal);
+    const differenceVal = Math.round(atRiskFreeVal - atRiskFreeAfterInflationVal);
+    console.log(56, 'zxc' ,'atRiskFreeAfterInflationVal', atRiskFreeAfterInflationVal)
+    console.log(57, 'zxc' ,'differenceVal', differenceVal)
 
     setAfterInflation(Math.round(afterInflationVal))
     setAtRiskFree(Math.round(atRiskFreeVal))
-    setAtRiskFreeAfterInflation(atRiskFreeAfterInflationVal)
+    setAtRiskFreeAfterInflation(Math.round(atRiskFreeAfterInflationVal))
     setAfterInflation(Math.round(afterInflationVal))
     setDifference(Math.round(differenceVal))
 
@@ -71,30 +73,18 @@ const App: () => Node = () => {
             backgroundColor: isDarkMode ? Colors.black : Colors.white
           }}>
           <View style={styles.sectionContainer}>
-            <TextInput
-              value={inflationRate}
-              placeholder="Current inflation rate"
-              style={styles.textBox} keyboardType="decimal-pad"
-              onChangeText={setInflationRate}
-            />
-            <TextInput
-              value={riskFreeRate}
-              placeholder="Current risk free rate"
-              style={styles.textBox} keyboardType="decimal-pad"
-              onChangeText={setRiskFreeRate}
-            />
-            <TextInput
-              value={amount}
-              placeholder="Amount you want to save"
-              style={styles.textBox} keyboardType="decimal-pad"
-              onChangeText={setAmount}
-            />
-            <TextInput
-              value={timeInYears}
-              placeholder="For how long (in years) will you save?"
-              style={styles.textBox} keyboardType="decimal-pad"
-              onChangeText={setTimeInYears}
-            />
+            <TextInput placeholder="Current inflation rate"
+                       style={styles.textBox} keyboardType="decimal-pad"
+                       onChangeText={setInflationRate}/>
+            <TextInput placeholder="Current risk free rate"
+                       style={styles.textBox} keyboardType="decimal-pad"
+                       onChangeText={setRiskFreeRate}/>
+            <TextInput placeholder="Amount you want to save"
+                       style={styles.textBox} keyboardType="decimal-pad"
+                       onChangeText={setAmount}/>
+            <TextInput placeholder="For how long (in years) will you save?"
+                       style={styles.textBox} keyboardType="decimal-pad"
+                       onChangeText={setTimeInYears}/>
             <Button title="Calculate inflation"
                     onPress={calculate}
             />
@@ -133,10 +123,11 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   textBox: {
-    height: 30,
+    paddingHorizontal: 10,
+    height: 50,
     borderColor: 'gray',
     borderWidth: 1,
-    marginTop: 10
+    marginVertical: 10
   }
 });
 
